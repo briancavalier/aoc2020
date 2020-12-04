@@ -23,8 +23,8 @@ export type Terrain = typeof open | typeof tree
 
 // Count trees in a traversal
 // Enforce the requirement to move first (i.e. don't count first row)
-export const countTrees = <Tree>(t: Tree, tr: Traversal<Map<Tree>>): number =>
-  count(t, traverse(next(tr)))
+export const countTrees = (tr: Traversal<Map<Terrain>>): number =>
+  count(tree, traverse(next(tr)))
 
 // Count trees in a path
 export const count = <T>(t: T, p: Path<T>): number => p.filter(x => x === t).length
@@ -68,6 +68,6 @@ const moves = [
 parseMap(createInterface(process.stdin))
   .then(map => {
     if (!map) throw new Error('Invalid map input')
-    const result = moves.reduce((n, move) => n * countTrees(tree, start(move, map)), 1)
+    const result = moves.reduce((n, move) => n * countTrees(start(move, map)), 1)
     console.log(result)
   })
