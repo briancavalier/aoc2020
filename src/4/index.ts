@@ -1,7 +1,4 @@
-import { createInterface } from 'readline'
-
-declare const TAG: unique symbol
-type Tagged<T, A> = A & { [TAG]: T }
+import { Tagged, lines } from '../lib'
 
 export type TravelDocument = Passport | NorthPoleCredentials
 
@@ -98,5 +95,5 @@ export const count = async <A>(as: AsyncIterable<A>): Promise<number> => {
   return n
 }
 
-count(parseTravelDocuments(readInputs(createInterface(process.stdin))))
+count(parseTravelDocuments(readInputs(lines(process.stdin))))
   .then(count => console.log('Valid passports:', count))
