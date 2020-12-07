@@ -17,10 +17,10 @@ const intersect = <A, S extends Set<A>>(s1: S, s2: S): S => {
   return i
 }
 
-const totalSize = (n: number, s: Set<unknown>) => n + s.size
+const sumSize = (n: number, s: Set<unknown>) => n + s.size
 
-foldLeft(totalSize, map(unionAnswers, groups(lines(process.stdin))), 0)
+foldLeft(sumSize, map(unionAnswers, groups(lines(process.stdin))), 0)
   .then(count => console.log('Part 1. yes answers:', count))
 
-foldLeft(totalSize, map(intersectAnswers, groups(lines(process.stdin))), 0)
+foldLeft(sumSize, map(intersectAnswers, groups(lines(process.stdin))), 0)
   .then(count => console.log('Part 2. yes answers:', count))
