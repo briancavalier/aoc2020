@@ -18,6 +18,9 @@ export const foldLeft = async <A, B>(f: (b: B, a: A) => B, as: AsyncIterable<A>,
   return b
 }
 
+export const toArray = async <A>(as: AsyncIterable<A>): Promise<readonly A[]> =>
+  foldLeft((array, a) => [...array, a], as, [] as A[])
+
 // ----------------------------------------------------------------------------------------
 // IO
 
