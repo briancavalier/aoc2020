@@ -119,7 +119,7 @@ toArray(map(parseInstruction, lines(process.stdin))).then(program => {
   if (!isValidProgram(program)) throw new SyntaxError(`Invalid program instruction: ${program}`)
   return program
 }).then(program => {
-  const initialState = { trace: new Set<Line>(), acc: 0, line: 0 as Line }
+  const initialState = { trace: new Set<Line>(), acc: 0, line: line(0) }
 
   // Part 1
   const result1 = getResult(detectInfiniteLoop(stepProgram), program, initialState)
